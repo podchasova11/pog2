@@ -1,0 +1,11 @@
+			Document doc = null;
+			URL url = new URL("http://export.yandex.ru/weather-ng/forecasts/"
+					+ cityID + ".xml");
+			//попробуйте пройти по ссылке и посмотреть, что именно мы парсим
+			// да и вообще саму структуру							
+			URLConnection uc = url.openConnection();
+			InputStream is = uc.getInputStream();//создали поток
+			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			DocumentBuilder db = dbf.newDocumentBuilder();
+			doc = db.parse(is);//непосредственно парсинг
+			doc.getDocumentElement().normalize();
